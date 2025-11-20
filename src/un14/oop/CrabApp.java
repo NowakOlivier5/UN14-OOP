@@ -4,13 +4,14 @@
  */
 package un14.oop;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
+
 
 /**
  *
  * @author Lestat Alvarez Quintana Ordiz 
  */
+import java.awt.EventQueue;
+import javax.swing.JFrame;
 public class CrabApp extends JFrame{
     public CrabApp(){
         crabUI();
