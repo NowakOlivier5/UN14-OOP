@@ -53,7 +53,7 @@ public class CrabGame extends JPanel implements ActionListener{
     }
     private void drawCrab(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(crabSprite.getImage(), crabSprite.getX(), crabSprite.getY(),128, 128, this);
+        g2d.drawImage(crabSprite.getImage(), crabSprite.getX(), crabSprite.getY(), 120, 120, this);
     }
     
     @Override
