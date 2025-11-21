@@ -16,8 +16,6 @@ public class CrabSprite {
 
     private int x = 10;
     private final int y = 600;
-    private int w = 100;
-    private int h = 80;
     private int speedX;
     private Image crabSprite;
 
@@ -28,11 +26,8 @@ public class CrabSprite {
 
     private void loadSprite() {
         
-        ImageIcon cs = new ImageIcon("/images/crabSprite.png");
+        ImageIcon cs = new ImageIcon(getClass().getResource("/images/crabSprite.png"));
         crabSprite = cs.getImage(); 
-        
-        w = crabSprite.getWidth(null);
-        h = crabSprite.getHeight(null);
     }
     public void move() {
         
@@ -47,17 +42,7 @@ public class CrabSprite {
     public int getY() {
         
         return y;
-    }
-    
-    public int getWidth() {
-        
-        return w;
-    }
-    
-    public int getHeight() {
-        
-        return h;
-    }    
+    }  
 
     public Image getImage() {
         
