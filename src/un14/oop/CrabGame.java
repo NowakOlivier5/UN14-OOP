@@ -24,7 +24,7 @@ public class CrabGame extends JPanel implements ActionListener{
     
     private Timer timer;
     private CrabSprite crabSprite;
-    private Image background;
+    private Image crabBackground;
     private final int delay = 10;
     
     public CrabGame(){
@@ -33,7 +33,7 @@ public class CrabGame extends JPanel implements ActionListener{
     private void crabBoard(){
         setBackground(Color.BLACK);
         setFocusable(true);
-        background = new ImageIcon(getClass().getResource("/images/ocean.jpg")).getImage();
+        crabBackground = new ImageIcon(getClass().getResource("/images/crabBackground.jpg")).getImage();
         
         crabSprite = new CrabSprite();
         
@@ -46,7 +46,7 @@ public class CrabGame extends JPanel implements ActionListener{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
-        g.drawImage(background, 0,0,getWidth(), getHeight(), this);
+        g.drawImage(crabBackground, 0,0,getWidth(), getHeight(), this);
         
         drawCrab(g);
         Toolkit.getDefaultToolkit().sync();
