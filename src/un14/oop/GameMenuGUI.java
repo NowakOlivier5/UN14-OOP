@@ -32,8 +32,8 @@ public class GameMenuGUI extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        MainMenuButton = new javax.swing.JButton();
+        PlayButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -58,13 +58,14 @@ public class GameMenuGUI extends javax.swing.JFrame {
         jRadioButton3.setText("Fishing Game");
         getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("Main Menu");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 50));
+        MainMenuButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        MainMenuButton.setText("Main Menu");
+        MainMenuButton.addActionListener(this::MainMenuButtonActionPerformed);
+        getContentPane().add(MainMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 50));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setText("Play");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, 150, 60));
+        PlayButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        PlayButton.setText("Play");
+        getContentPane().add(PlayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, 150, 60));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 150, 50));
@@ -84,6 +85,13 @@ public class GameMenuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void MainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainMenuButtonActionPerformed
+        // TODO add your handling code here:
+        MainMenuGUI myGUI = new MainMenuGUI();
+        myGUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MainMenuButtonActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -110,9 +118,9 @@ public class GameMenuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton MainMenuButton;
+    private javax.swing.JButton PlayButton;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

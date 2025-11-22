@@ -28,9 +28,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        SettingsButton = new javax.swing.JButton();
+        GamesButton = new javax.swing.JButton();
+        InformationButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -40,20 +40,20 @@ public class MainMenuGUI extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton3.setText("Settings");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 160, -1));
+        SettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        SettingsButton.setText("Settings");
+        SettingsButton.addActionListener(this::SettingsButtonActionPerformed);
+        getContentPane().add(SettingsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 160, -1));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton1.setText("Games");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 160, -1));
+        GamesButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        GamesButton.setText("Games");
+        GamesButton.addActionListener(this::GamesButtonActionPerformed);
+        getContentPane().add(GamesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 290, 160, -1));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton2.setText("Information");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 160, -1));
+        InformationButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        InformationButton.setText("Information");
+        InformationButton.addActionListener(this::InformationButtonActionPerformed);
+        getContentPane().add(InformationButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 160, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel2.setText("Main Menu");
@@ -63,24 +63,33 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel1.setText("Life Below Water");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/un14/oop/images/underwater-landscape-ancient-city-temple-columns-vector.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/un14/oop/images/MainMenuBG.png"))); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void SettingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        SettingsGUI myGUI = new SettingsGUI();
+        myGUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_SettingsButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void InformationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InformationButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        InformationGUI myGUI = new InformationGUI();
+        myGUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_InformationButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void GamesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GamesButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        GameMenuGUI myGUI = new GameMenuGUI();
+        myGUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_GamesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,9 +117,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton GamesButton;
+    private javax.swing.JButton InformationButton;
+    private javax.swing.JButton SettingsButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

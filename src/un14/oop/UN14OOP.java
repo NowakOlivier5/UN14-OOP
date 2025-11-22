@@ -15,6 +15,8 @@ public class UN14OOP {
      */
     public static void main(String[] args) {
         //testing upload
+        MainMenuGUI myGUI = new MainMenuGUI();
+        myGUI.setVisible(true);
     }
     
 }
