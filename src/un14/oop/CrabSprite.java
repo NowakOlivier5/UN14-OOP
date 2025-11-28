@@ -14,13 +14,14 @@ import java.awt.event.KeyEvent;
 
 public class CrabSprite {
 
-    private int x = 10;
-    private final int y = 600;
-    private int speedX;
+    private final int crabX;
+    private int crabY, crabGrav, crabJump;
     private Image crabSprite;
 
     public CrabSprite() {
-
+        crabY = 600;
+        crabX = 10;
+        crabGrav = 1;
         loadSprite();
     }
 
@@ -29,19 +30,19 @@ public class CrabSprite {
         ImageIcon cs = new ImageIcon(getClass().getResource("/images/crabSprite.png"));
         crabSprite = cs.getImage(); 
     }
-    public void move() {
-        
-        x += speedX;
+    public void move() { 
+        crabJump += crabGrav;
+        crabY += crabJump;
     }
 
-    public int getX() {
+    public int getCrabX() {
         
-        return x;
+        return crabX;
     }
 
-    public int getY() {
+    public int getCrabY() {
         
-        return y;
+        return crabY;
     }  
 
     public Image getImage() {
@@ -53,12 +54,12 @@ public class CrabSprite {
 
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
-            speedX = -2;
+        if (key == KeyEvent.VK_UP) {
+            crabJump = -2;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            speedX = 2;
+            crabJump = 2;
         }
     }
 
@@ -66,12 +67,12 @@ public class CrabSprite {
         
         int key = e.getKeyCode();
 
-        if (key == KeyEvent.VK_LEFT) {
-            speedX = 0;
+        if (key == KeyEvent.VK_UP) {
+            crabJump = 0;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            speedX = 0;
+            crabJump = 0;
         }
     }
 }
