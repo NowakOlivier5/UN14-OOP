@@ -20,14 +20,17 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import java.awt.Image;
+
 public class CrabGame extends JPanel implements ActionListener{
     
-    private Timer timer;
+    private Timer crabLoop;
     private CrabSprite crabSprite;
     private Image crabBackground;
-    private final int delay = 10;
-    
+    private CrabTrash crabTrash;
+    private final int delay;
+    private boolean crabDead = false;
     public CrabGame(){
+        delay = 10;
         crabBoard();
     }
     private void crabBoard(){
@@ -38,22 +41,24 @@ public class CrabGame extends JPanel implements ActionListener{
         crabSprite = new CrabSprite();
         
         addKeyListener(new TAdapter());
-        timer = new Timer(delay, this);
-        timer.start();
+        
+        crabLoop = new Timer(delay, this);
+        crabLoop.start();
     }
-
+    
+    
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
         g.drawImage(crabBackground, 0,0,getWidth(), getHeight(), this);
-        
+     
         drawCrab(g);
         Toolkit.getDefaultToolkit().sync();
     }
     private void drawCrab(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(crabSprite.getImage(), crabSprite.getX(), crabSprite.getY(), 120, 120, this);
+        g2d.drawImage(crabSprite.getImage(), crabSprite.getCrabX(), crabSprite.getCrabY(), 120, 120, this);
     }
     
     @Override
