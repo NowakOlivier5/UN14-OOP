@@ -6,7 +6,7 @@ package un14.oop;
 
 /**
  *
- * @author candy
+ * @author Olivier Nowak 
  */
 public class GameMenuGUI extends javax.swing.JFrame {
     
@@ -29,7 +29,7 @@ public class GameMenuGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        crabGame = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
         MainMenuButton = new javax.swing.JButton();
@@ -40,13 +40,14 @@ public class GameMenuGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jRadioButton1.setText("Crab Game");
-        jRadioButton1.setToolTipText("");
-        getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 170, 40));
+        buttonGroup1.add(crabGame);
+        crabGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        crabGame.setText("Crab Game");
+        crabGame.setToolTipText("");
+        getContentPane().add(crabGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 170, 40));
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -65,6 +66,7 @@ public class GameMenuGUI extends javax.swing.JFrame {
 
         PlayButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         PlayButton.setText("Play");
+        PlayButton.addActionListener(this::PlayButtonActionPerformed);
         getContentPane().add(PlayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, 150, 60));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -80,6 +82,9 @@ public class GameMenuGUI extends javax.swing.JFrame {
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/un14/oop/images/GameMenuBG.png"))); // NOI18N
         jLabel4.setText("jLabel4");
+        jLabel4.setMaximumSize(new java.awt.Dimension(1280, 720));
+        jLabel4.setMinimumSize(new java.awt.Dimension(1280, 720));
+        jLabel4.setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         pack();
@@ -91,6 +96,16 @@ public class GameMenuGUI extends javax.swing.JFrame {
         myGUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_MainMenuButtonActionPerformed
+
+    private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
+       //Added by Lestat
+        if(crabGame.isSelected()){
+           CrabApp.main(null);
+           this.dispose();
+       }else{
+           System.out.println("This is not the game im in charge of! Im doing the crab game");
+       }
+    }//GEN-LAST:event_PlayButtonActionPerformed
     
     /**
      * @param args the command line arguments
@@ -121,10 +136,10 @@ public class GameMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton MainMenuButton;
     private javax.swing.JButton PlayButton;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton crabGame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField jTextField1;
