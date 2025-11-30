@@ -43,7 +43,7 @@ public class Fishing extends JPanel implements ActionListener{
         bg = new ImageIcon(getClass().getResource("/un14/oop/images/fishingBG2.png")).getImage();
         fishingBoat = new ImageIcon(getClass().getResource("/un14/oop/images/fishingBoat.png")).getImage();
         fishingTrash = new fishingTrash(1280);
-        fishingFish = new fishingFish();
+        fishingFish = new fishingFish(1280);
         fishingHook = new fishingHook();
         
         addKeyListener(new TAdapter());
@@ -64,6 +64,7 @@ public class Fishing extends JPanel implements ActionListener{
         fishingTrash.trashPos();
         fishingFish.fishPos();
         fishingTrash.checkCollision(fishingHook);
+        fishingFish.checkCollision(fishingHook);
         repaint();
     }
     
@@ -74,8 +75,11 @@ public class Fishing extends JPanel implements ActionListener{
         g.drawImage(bg, WIDTH, HEIGHT, this);
         g.drawImage(fishingBoat, 620, 80, this);
         fishingTrash.drawTrash(g, this);
+        fishingFish.drawFish(g, this);
 
         Toolkit.getDefaultToolkit().sync();
+        
+        g.drawString("Score " + fishingHook.getScore(), 20, 40); //will be removed once leaderbopard is added
         
     }
     private void drawHook(Graphics g){

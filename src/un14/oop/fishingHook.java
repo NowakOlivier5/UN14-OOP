@@ -16,17 +16,18 @@ import javax.swing.ImageIcon;
 public class fishingHook {
     
     private final int X;
-    private int Y, hookVel, hookDrop;
+    private int Y, hookVel;
     private Image hookSprite;
-    private int canMove;
+    private int canMove; //added this as the simplest way i could think of to stop hook from going up past the ship
+    private int score;
     
     public fishingHook(){
         X = 0;
         Y = -501;
         hookVel = 0;
-        hookDrop = 0;
         loadSprite();
         canMove = 0;
+        score = 0;
     }
     private void loadSprite() {
         
@@ -87,4 +88,11 @@ public class fishingHook {
         return new java.awt.Rectangle(hitboxX, hitboxY, hitboxW, hitboxH);
     }
 
+    public int getScore() {
+        return score; //for future leaderboard
+    }
+
+    public void changeScore(int amount) {
+        score += amount;
+    }
 }

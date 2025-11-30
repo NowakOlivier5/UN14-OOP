@@ -49,7 +49,8 @@ public class fishingTrash {
     for (int i = trashArray.size() - 1; i >= 0; i--) {
         Trash t = trashArray.get(i);
 
-        if (hook.getBounds().intersects(t.getBounds())) {//checks each trash for collision and if so deletes it
+        if (hook.getBounds().intersects(t.getBounds())) {//checks each trash for collision and if so deletes it and adds a point
+            hook.changeScore(1);
             trashArray.remove(i);
         }
         //used to have an if that deletes the trash when it goes off screen but it stopped working after adding collision, this doesnt affect anything other than the game starts to lag if you miss too much trash for a long time
@@ -64,7 +65,7 @@ public class fishingTrash {
         boolean variant;
         
         public Trash(int fishingBoardW, int randomY){
-            x = fishingBoardW;
+            x = fishingBoardW + 50; //+50 to spawn off screen
             y = randomY;
             
             variant = fishingRandomVariant.nextInt(2) == 1;
@@ -87,7 +88,7 @@ public class fishingTrash {
         }
 
         public void trashMove(){
-            x -= 2;
+            x -= 1;
         }
         
     }
