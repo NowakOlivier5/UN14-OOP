@@ -42,7 +42,7 @@ public class Fishing extends JPanel implements ActionListener{
         
         bg = new ImageIcon(getClass().getResource("/un14/oop/images/fishingBG2.png")).getImage();
         fishingBoat = new ImageIcon(getClass().getResource("/un14/oop/images/fishingBoat.png")).getImage();
-        fishingTrash = new fishingTrash();
+        fishingTrash = new fishingTrash(1280);
         fishingFish = new fishingFish();
         fishingHook = new fishingHook();
         
@@ -51,10 +51,10 @@ public class Fishing extends JPanel implements ActionListener{
         fishingLoop = new Timer(16, this);
         fishingLoop.start();
         
-        fishingTrashSpawner = new Timer(1500, e -> fishingTrash.spawningTrash());
+        fishingTrashSpawner = new Timer(4500, e -> fishingTrash.spawningTrash());//the reason i made the intervals so different is so they dont line up, as it would be impossible to collect the trash while avoiding the fish
         fishingTrashSpawner.start();
         
-        fishingFishSpawner = new Timer(1500, e -> fishingFish.spawningFish());
+        fishingFishSpawner = new Timer(6200, e -> fishingFish.spawningFish());
         fishingFishSpawner.start();
     }
     
@@ -63,19 +63,20 @@ public class Fishing extends JPanel implements ActionListener{
         fishingHook.move();
         fishingTrash.trashPos();
         fishingFish.fishPos();
+        fishingTrash.checkCollision(fishingHook);
         repaint();
     }
     
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        
+        drawHook(g); //hook drawn first to be behind sky and boat
         g.drawImage(bg, WIDTH, HEIGHT, this);
         g.drawImage(fishingBoat, 620, 80, this);
-        
-        drawHook(g);
-        
+        fishingTrash.drawTrash(g, this);
+
         Toolkit.getDefaultToolkit().sync();
+        
     }
     private void drawHook(Graphics g){
         Graphics2D g2d = (Graphics2D) g;

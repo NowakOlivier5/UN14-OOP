@@ -19,7 +19,7 @@ public class fishingHook {
     private int Y, hookVel, hookDrop;
     private Image hookSprite;
     private int canMove;
-
+    
     public fishingHook(){
         X = 0;
         Y = -501;
@@ -73,4 +73,18 @@ public class fishingHook {
         }
 
     }
+    
+    public java.awt.Rectangle getBounds() {
+        int spriteW = hookSprite.getWidth(null);
+        int spriteH = hookSprite.getHeight(null);
+        
+        int hitboxW = spriteW/10; //making a small hitbox 10% of the original size
+        int hitboxH = spriteH/10;
+        
+        int hitboxX = X + (spriteW-hitboxW)/2;//this centres the hitbox
+        int hitboxY = Y + spriteH - hitboxH;//this puts the hitbox at the bottom at the hook
+        
+        return new java.awt.Rectangle(hitboxX, hitboxY, hitboxW, hitboxH);
+    }
+
 }
