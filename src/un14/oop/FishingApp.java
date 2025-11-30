@@ -8,10 +8,25 @@ package un14.oop;
  *
  * @author Olivier Nowak
  */
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 public class FishingApp extends JFrame{
-    public static void main(String[] args){
+    public FishingApp(){
+        FishingUI();
+    }
+    private void FishingUI(){
+        add(new Fishing());
+        setSize(1280, 720);
         
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
+    public static void main(String[] args){
+        EventQueue.invokeLater(() -> {
+            FishingApp fishing = new FishingApp();
+            fishing.setVisible(true);
+        });
     }
 }
