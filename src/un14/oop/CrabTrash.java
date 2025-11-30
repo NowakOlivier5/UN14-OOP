@@ -42,7 +42,7 @@ public class CrabTrash {
     //This loops through the array "backwards". When the trash is spawned puts it in the array and slides it through the screen. Once is off screen it removes it (if i didnt after a while you could notice the game slowing down a bit)It also adds a point if the crab doesnt touch the trash. 
     public int trashPos(){
         int crabPoints = 0;
-        for(int i = trashArray.size() - 1; i >= 0; i--){
+        for(var i = trashArray.size() - 1; 0 < i; i--){
             Trash ct = trashArray.get(i);
             ct.trashMove();
             
