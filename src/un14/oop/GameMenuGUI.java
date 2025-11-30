@@ -30,8 +30,8 @@ public class GameMenuGUI extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         crabGame = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        shrimpGame = new javax.swing.JRadioButton();
+        fishingGame = new javax.swing.JRadioButton();
         MainMenuButton = new javax.swing.JButton();
         PlayButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
@@ -49,15 +49,15 @@ public class GameMenuGUI extends javax.swing.JFrame {
         crabGame.setToolTipText("");
         getContentPane().add(crabGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 170, 40));
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jRadioButton2.setText("Shrimp Game");
-        getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 360, -1, -1));
+        buttonGroup1.add(shrimpGame);
+        shrimpGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        shrimpGame.setText("Shrimp Game");
+        getContentPane().add(shrimpGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 360, -1, -1));
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jRadioButton3.setText("Fishing Game");
-        getContentPane().add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
+        buttonGroup1.add(fishingGame);
+        fishingGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        fishingGame.setText("Fishing Game");
+        getContentPane().add(fishingGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
 
         MainMenuButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         MainMenuButton.setText("Main Menu");
@@ -98,13 +98,18 @@ public class GameMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_MainMenuButtonActionPerformed
 
     private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
-       //Added by Lestat
         if(crabGame.isSelected()){
            CrabApp.main(null);
            this.dispose();
-       }else{
-           System.out.println("This is not the game im in charge of! Im doing the crab game");
-       }
+        }
+        if(shrimpGame.isSelected()){
+           //YKShrimpApp.main(null); commeneted as its missing its main right now
+           this.dispose();
+        }
+        if(fishingGame.isSelected()){
+           FishingApp.main(null);
+           this.dispose();
+        }
     }//GEN-LAST:event_PlayButtonActionPerformed
     
     /**
@@ -137,11 +142,11 @@ public class GameMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton PlayButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton crabGame;
+    private javax.swing.JRadioButton fishingGame;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JRadioButton shrimpGame;
     // End of variables declaration//GEN-END:variables
 }
