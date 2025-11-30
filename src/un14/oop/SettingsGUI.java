@@ -7,10 +7,10 @@ package un14.oop;
 
 /**
  *
- * @author candy
+ * @author Olivier Nowak
  */
 public class SettingsGUI extends javax.swing.JFrame {
-    
+    public static float volume = 1.0f;
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SettingsGUI.class.getName());
 
     /**
@@ -18,6 +18,9 @@ public class SettingsGUI extends javax.swing.JFrame {
      */
     public SettingsGUI() {
         initComponents();
+        music.addChangeListener(e -> {
+            SettingsGUI.volume = music.getValue() / 100f; //get volume using float varname = SettingsGUI.volume;
+        });
     }
 
     /**
@@ -33,7 +36,7 @@ public class SettingsGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
+        music = new javax.swing.JSlider();
         jSlider2 = new javax.swing.JSlider();
         jLabel3 = new javax.swing.JLabel();
 
@@ -71,7 +74,7 @@ public class SettingsGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(music, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
@@ -81,7 +84,7 @@ public class SettingsGUI extends javax.swing.JFrame {
                 .addContainerGap(65, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(music, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -139,7 +142,7 @@ public class SettingsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSlider jSlider1;
     private javax.swing.JSlider jSlider2;
+    private javax.swing.JSlider music;
     // End of variables declaration//GEN-END:variables
 }

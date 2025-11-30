@@ -8,6 +8,10 @@ package un14.oop;
  *
  * @author Olivier Nowak
  */
-public class FishingApp {
-    
+import javax.swing.JFrame;
+
+public class FishingApp extends JFrame{
+    public static void main(String[] args){
+        
+    }
 }
