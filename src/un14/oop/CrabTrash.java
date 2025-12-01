@@ -18,7 +18,7 @@ public class CrabTrash {
     private final int crabBoardW;
     private final int crabBoardH;
     private final Random crabRandom;
-    private final ArrayList<Trash> trashArray; //This array will generate new trash
+    private final ArrayList<Trash> trashArray; //This array will generate new trash, ill explain later in a little bit more of detail.
     
     //The position in the board is important, cause makes the trash spawn outside the board and makes it stay on "ground level"
     public CrabTrash(int crabBoardW, int crabBoardH) {
