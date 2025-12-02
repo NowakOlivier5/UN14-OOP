@@ -79,7 +79,7 @@ public class Fishing extends JPanel implements ActionListener{
 
         Toolkit.getDefaultToolkit().sync();
         
-        g.drawString("Score " + fishingHook.getScore(), 20, 40); //will be removed once leaderbopard is added
+        g.drawString("Score " + fishingHook.getScore(), 20, 40); //will be removed once leaderboard is added
         
     }
     private void drawHook(Graphics g){

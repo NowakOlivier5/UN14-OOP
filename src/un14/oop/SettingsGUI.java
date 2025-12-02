@@ -18,6 +18,8 @@ public class SettingsGUI extends javax.swing.JFrame {
      */
     public SettingsGUI() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
         music.addChangeListener(e -> {
             SettingsGUI.volume = music.getValue() / 100f; //get volume using float varname = SettingsGUI.volume;
         });
@@ -42,6 +44,7 @@ public class SettingsGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         MainMenuButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N

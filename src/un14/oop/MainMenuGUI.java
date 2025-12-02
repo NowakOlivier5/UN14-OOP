@@ -17,6 +17,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
      */
     public MainMenuGUI() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -40,6 +42,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
+        setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         SettingsButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
