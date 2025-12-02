@@ -4,21 +4,41 @@
  */
 package un14.oop;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
- * @author Olivier Nowak
+ * @author Lestat Azariel Alvarez Quintana Ordiz
  */
 public class InformationGUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InformationGUI.class.getName());
-
-    /**
-     * Creates new form InformationGUI
-     */
+    private int image = 0;
+    private final String[] informationSlides = {
+     "/un14/oop/images/information/1.png",
+     "/un14/oop/images/information/2.png",
+     "/un14/oop/images/information/3.png",
+     "/un14/oop/images/information/4.png",
+     "/un14/oop/images/information/5.png",
+     "/un14/oop/images/information/6.png"
+    };
+       
+    private void choosingImage(){
+       ImageIcon i = new ImageIcon(
+       new ImageIcon(getClass().getResource(informationSlides[image])).getImage().getScaledInstance(slides.getWidth(), slides.getHeight(), Image.SCALE_SMOOTH));
+       
+       slides.setIcon(i);
+    }
+    
+    
+    //Creates new form InformationGUI
+     
     public InformationGUI() {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
+        //choosingImage();
     }
 
     /**
@@ -31,10 +51,9 @@ public class InformationGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         MainMenuButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        goLeft = new javax.swing.JButton();
+        goRight = new javax.swing.JButton();
+        slides = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,21 +67,19 @@ public class InformationGUI extends javax.swing.JFrame {
         MainMenuButton.addActionListener(this::MainMenuButtonActionPerformed);
         getContentPane().add(MainMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 50));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jButton2.setText("<");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 590, -1, 70));
+        goLeft.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        goLeft.setText("<");
+        goLeft.addActionListener(this::goLeftActionPerformed);
+        getContentPane().add(goLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 590, -1, 70));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jButton3.setText(">");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 590, -1, 70));
+        goRight.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        goRight.setText(">");
+        goRight.addActionListener(this::goRightActionPerformed);
+        getContentPane().add(goRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 590, -1, 70));
 
-        jTextPane1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jTextPane1.setText("Placeholder text");
-        jScrollPane1.setViewportView(jTextPane1);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 870, 480));
+        slides.setIcon(new javax.swing.ImageIcon(getClass().getResource("/un14/oop/images/information/LabelIcon.png"))); // NOI18N
+        slides.setText("jLabel2");
+        getContentPane().add(slides, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 86, 730, 480));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/un14/oop/images/InformationBG.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -71,13 +88,15 @@ public class InformationGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void goLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goLeftActionPerformed
+        image -= 1;
+        choosingImage();
+    }//GEN-LAST:event_goLeftActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void goRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goRightActionPerformed
+        image += 1;
+        choosingImage();
+    }//GEN-LAST:event_goRightActionPerformed
 
     private void MainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainMenuButtonActionPerformed
         // TODO add your handling code here:
@@ -113,10 +132,9 @@ public class InformationGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton MainMenuButton;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton goLeft;
+    private javax.swing.JButton goRight;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel slides;
     // End of variables declaration//GEN-END:variables
 }

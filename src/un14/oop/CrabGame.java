@@ -30,6 +30,7 @@ public class CrabGame extends JPanel implements ActionListener{
     private Image crabBackground;
     private CrabTrash crabTrash;
     private boolean crabDead = false;
+    private boolean crabStart = false;
     private int crabPoints = 0;
     
     public CrabGame(){
@@ -56,7 +57,8 @@ public class CrabGame extends JPanel implements ActionListener{
     
     @Override //Here is my loose condition and controls. And points ofc
     public void actionPerformed(ActionEvent e){
-        if (!crabDead){ //I check if the crab state is false, if it is, lets keep going! and add those points when the trash passes outside the screen. If it touched the trash, everything stops.
+        if (!crabDead && crabStart){ //Im adding the variable crabStart, so this way the game starts when the players wants to, and shows the instructions.
+//I check if the crab state is false, if it is, lets keep going! and add those points when the trash passes outside the screen. If it touched the trash, everything stops.
             crabSprite.move();
             crabPoints += crabTrash.trashPos();
             if(crabTrash.crabDeath(crabSprite)){
@@ -80,9 +82,14 @@ public class CrabGame extends JPanel implements ActionListener{
         
         g.drawImage(crabBackground, 0,0,getWidth(), getHeight(), this);//This draws my background, the cordinates there says from where it should start drawing it, that it would be top left corner.
      
+        if (!crabStart && !crabDead){
+            drawCrabStart(g);
+        }
         drawCrab(g); //Drawing the crab, the trash and the points!
         crabTrash.drawTrash(g, this);
-        crabPoints(g);
+        if(crabStart && !crabDead){
+            crabPoints(g);
+        }
         if(crabDead) { //For the "death" I put a message on screen with the points, this call that function and draws it when the player looses.
             drawCrabDead(g);
         }
@@ -98,17 +105,36 @@ public class CrabGame extends JPanel implements ActionListener{
     
     //Same as the text of before, but in this case is what we are summoning in the previous part to show on the screen when the crab "dies"
     private void drawCrabDead(Graphics g){
-        g.setColor(Color.ORANGE);
+        g.setColor(Color.RED);
         g.setFont(new Font("Arial", Font.BOLD, 48));
         g.drawString("THE CRAB GOT CAUGHT IN THE TRASH!",200, 300);
         g.drawString("Your points: "+crabPoints,200, 500);
     }
+    //This next part is going to be the display of my instrucctions before the player starts playing.
+    private void drawCrabStart(Graphics g){
+        g.setColor(Color.ORANGE);
+        g.setFont(new Font("Arial", Font.BOLD, 48));
+        g.drawString("Jump Little Crab!", 450, 100);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("Press up to beging", 570, 200);
+        g.drawString("How to play:", 250, 350);
+        g.setFont(new Font("Arial", Font.BOLD, 30));
+        g.drawString("Pressing the UP arrow key makes the crab Jump", 350, 400);
+        g.drawString("Jump over the trash to gain points and avoid touching it!", 300, 450);        
+    }
      
-    //Handles the input of the player. Gives the command to the sprite on "what to do when key is pressed"
+    //Handles the input of the player. Gives the command to the sprite on "what to do when key is pressed" I also added so the screen stays still till the player presses start.
      private class TAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
-            crabSprite.keyPressed(e);
+            int start = e.getKeyCode();
+            if(!crabStart && start == KeyEvent.VK_UP){
+               crabStart = true;
+            }else if(crabStart){
+                crabSprite.keyPressed(e);
+            }
         }
-    }   
+    }
+     
+    
 }
