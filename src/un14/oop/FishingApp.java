@@ -12,11 +12,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 public class FishingApp extends JFrame{
-    public FishingApp(){
+    
+    private String name;
+    
+    public FishingApp(String name){
+        this.name = name;
         FishingUI();
     }
+    public String getPlayer(){ //getName didnt work for some reason
+        return name;
+    }
     private void FishingUI(){
-        add(new Fishing());
+        add(new Fishing(name));
         setSize(1280, 720);
         
         setResizable(false);
@@ -25,8 +32,9 @@ public class FishingApp extends JFrame{
     }
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
-            FishingApp fishing = new FishingApp();
+            FishingApp fishing = new FishingApp("");//placeholder as i added name functionality later and had to add something here to make it work
             fishing.setVisible(true);
         });
+        
     }
 }

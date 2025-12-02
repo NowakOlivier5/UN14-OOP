@@ -36,7 +36,7 @@ public class GameMenuGUI extends javax.swing.JFrame {
         fishingGame = new javax.swing.JRadioButton();
         MainMenuButton = new javax.swing.JButton();
         PlayButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        nameInput = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -73,8 +73,8 @@ public class GameMenuGUI extends javax.swing.JFrame {
         PlayButton.addActionListener(this::PlayButtonActionPerformed);
         getContentPane().add(PlayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, 150, 60));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 150, 50));
+        nameInput.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        getContentPane().add(nameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 150, 50));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Select Desired Game");
@@ -102,6 +102,8 @@ public class GameMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_MainMenuButtonActionPerformed
 
     private void PlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PlayButtonActionPerformed
+        String name = nameInput.getText();
+        
         if(crabGame.isSelected()){
            CrabApp.main(null);
            this.dispose();
@@ -111,7 +113,7 @@ public class GameMenuGUI extends javax.swing.JFrame {
            this.dispose();
         }
         if(fishingGame.isSelected()){
-           FishingApp.main(null);
+           new FishingApp(nameInput.getText()).setVisible(true);
            this.dispose();
         }
     }//GEN-LAST:event_PlayButtonActionPerformed
@@ -150,7 +152,7 @@ public class GameMenuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nameInput;
     private javax.swing.JRadioButton shrimpGame;
     // End of variables declaration//GEN-END:variables
 }

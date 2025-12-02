@@ -31,8 +31,10 @@ public class Fishing extends JPanel implements ActionListener{
     private fishingHook fishingHook;
     private fishingTrash fishingTrash;
     private fishingFish fishingFish;
+    private String name;
     
-    public Fishing(){
+    public Fishing(String name){
+        this.name = name;
         fishBoard();
     }
     
@@ -79,7 +81,8 @@ public class Fishing extends JPanel implements ActionListener{
 
         Toolkit.getDefaultToolkit().sync();
         
-        g.drawString("Score " + fishingHook.getScore(), 20, 40); //will be removed once leaderboard is added
+        g.drawString("Name " + name, 20, 40);
+        g.drawString("Score " + fishingHook.getScore(), 20, 60); //will both be removed once leaderboard is added
         
     }
     private void drawHook(Graphics g){
@@ -93,4 +96,5 @@ public class Fishing extends JPanel implements ActionListener{
             fishingHook.keyPressed(e);
         }
     }  
+
 }
