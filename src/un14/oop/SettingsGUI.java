@@ -21,7 +21,7 @@ public class SettingsGUI extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         music.addChangeListener(e -> {
-            SettingsGUI.volume = music.getValue() / 100f; //get volume using float varname = SettingsGUI.volume;
+            SettingsGUI.volume = music.getValue(); 
         });
     }
 
@@ -60,6 +60,12 @@ public class SettingsGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("SFX");
+
+        music.setMaximum(3);
+        music.setToolTipText("");
+        music.setValue(3);
+
+        jSlider2.setMaximum(3);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

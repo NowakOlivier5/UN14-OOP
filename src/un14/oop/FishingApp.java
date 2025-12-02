@@ -14,9 +14,11 @@ import javax.swing.JFrame;
 public class FishingApp extends JFrame{
     
     private String name;
+    private soundPlayer music;
     
     public FishingApp(String name){
         this.name = name;
+        music = new soundPlayer("/un14/oop/sound/fishingMusic.wav");
         FishingUI();
     }
     public String getPlayer(){ //getName didnt work for some reason
