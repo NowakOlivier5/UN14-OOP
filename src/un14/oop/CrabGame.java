@@ -50,8 +50,8 @@ public class CrabGame extends JPanel implements ActionListener{
         
         crabLoop = new Timer(16, this);//I might mess around with this in the future a bit more, but keeping it at 16 makes the game stay at 60 fps.
         crabLoop.start();
-        
         trashSpawner = new Timer(1500, e -> crabTrash.spawningTrash());//This is my trash spawner. I found out that its ms what it measures in time, so if i want to make the game harder i could put less time and make the trash spawn more freacuently.
+        
         trashSpawner.start();
     }
     

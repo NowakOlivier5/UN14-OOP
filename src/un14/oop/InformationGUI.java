@@ -38,7 +38,7 @@ public class InformationGUI extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        //choosingImage();
+        choosingImage();
     }
 
     /**
@@ -77,7 +77,6 @@ public class InformationGUI extends javax.swing.JFrame {
         goRight.addActionListener(this::goRightActionPerformed);
         getContentPane().add(goRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 590, -1, 70));
 
-        slides.setIcon(new javax.swing.ImageIcon(getClass().getResource("/un14/oop/images/information/LabelIcon.png"))); // NOI18N
         slides.setText("jLabel2");
         getContentPane().add(slides, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 86, 730, 480));
 
@@ -89,12 +88,22 @@ public class InformationGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void goLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goLeftActionPerformed
-        image -= 1;
+        if (image == 0){
+            image = 5;
+            choosingImage();
+        }else{
+            image -= 1;
+        }
         choosingImage();
     }//GEN-LAST:event_goLeftActionPerformed
 
     private void goRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goRightActionPerformed
-        image += 1;
+        if (image == 5){
+            image = 0;
+            choosingImage();
+        }else{
+            image += 1;
+        }
         choosingImage();
     }//GEN-LAST:event_goRightActionPerformed
 
