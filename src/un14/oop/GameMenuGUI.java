@@ -109,7 +109,7 @@ public class GameMenuGUI extends javax.swing.JFrame {
            this.dispose();
         }
         if(shrimpGame.isSelected()){
-           //YKShrimpApp.main(null); commented as its missing its main right now
+           ShrimpApp.main(null);
            this.dispose();
         }
         if(fishingGame.isSelected()){
