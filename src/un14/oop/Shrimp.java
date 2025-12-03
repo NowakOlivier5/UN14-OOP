@@ -39,21 +39,29 @@ public class Shrimp extends JPanel implements ActionListener{
     // Load all resources and timers for the game
     private void shrimpBoard() {
         shrimpBackground = new ImageIcon(getClass().getResource("/un14/oop/images/shrimpBackground.png")).getImage();
+        setFocusable(true);
+        
         shrimpPlayer = new ShrimpPlayer();
+        
+        shrimpLoop = new Timer(16, this);
+        shrimpLoop.start();
+        
+        addKeyListener(new TAdapter());
     }
     
-    // Take user input
+    // Detects if there was user input
     @Override
     public void actionPerformed(ActionEvent e) {
         // Insert actions
-        //player.move();
+        shrimpPlayer.updatePlayer();
+        repaint();
     }
     
     // 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(shrimpBackground, WIDTH, HEIGHT, this);
+        g.drawImage(shrimpBackground, 0, 0, getWidth(), getHeight(), this);
         
         drawShrimp(g);
         
@@ -63,5 +71,16 @@ public class Shrimp extends JPanel implements ActionListener{
     private void drawShrimp(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(shrimpPlayer.getImage(), shrimpPlayer.getPosX(), shrimpPlayer.getPosY(), 200, 100, this);
+    }
+    
+    private class TAdapter extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            shrimpPlayer.movePlayer(e);
+        }
+        @Override
+        public void keyReleased(KeyEvent e) {
+            shrimpPlayer.stopPlayer(e);
+        }
     }
 }
