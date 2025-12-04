@@ -6,13 +6,19 @@ package un14.oop;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
-
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.IOException;
 /**
- *
+ *InformationGUI.java
  * @author Lestat Azariel Alvarez Quintana Ordiz
  */
 public class InformationGUI extends javax.swing.JFrame {
-    
+    private final ArrayList<String> newsletterSubs = new ArrayList<>();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InformationGUI.class.getName());
     private int image = 0;
     private final String[] informationSlides = {
@@ -23,7 +29,30 @@ public class InformationGUI extends javax.swing.JFrame {
      "/un14/oop/images/information/5.png",
      "/un14/oop/images/information/6.png"
     };
-       
+    private final String textFile = "newsletterSubscribers.txt";
+    //At the start I only printed message but was temporarly, as soon as you changed menu or closed the app the information goes missing. Oli reminded me that we did see how to save them on files, so here im doing the loading the data and the saving the data.
+    private void emailReader(){
+        try(BufferedReader reader = new BufferedReader(new FileReader(textFile))){
+            String l;
+            while ((l = reader.readLine()) !=null){
+                newsletterSubs.add(l.trim());
+            }
+        }catch (IOException e){
+            System.out.println("There is no subscribers file.");
+        }
+    }
+    
+    private void emailWriter(){
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(textFile))){
+            for (String email : newsletterSubs){
+                writer.write(email);
+                writer.newLine();
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    
     private void choosingImage(){
        ImageIcon i = new ImageIcon(
        new ImageIcon(getClass().getResource(informationSlides[image])).getImage().getScaledInstance(slides.getWidth(), slides.getHeight(), Image.SCALE_SMOOTH));
@@ -39,6 +68,7 @@ public class InformationGUI extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         choosingImage();
+        emailReader();
     }
 
     /**
@@ -54,6 +84,11 @@ public class InformationGUI extends javax.swing.JFrame {
         goLeft = new javax.swing.JButton();
         goRight = new javax.swing.JButton();
         slides = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
+        subscribe = new javax.swing.JButton();
+        cancel = new javax.swing.JButton();
+        verify = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,15 +105,33 @@ public class InformationGUI extends javax.swing.JFrame {
         goLeft.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         goLeft.setText("<");
         goLeft.addActionListener(this::goLeftActionPerformed);
-        getContentPane().add(goLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 590, -1, 70));
+        getContentPane().add(goLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, 70));
 
         goRight.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         goRight.setText(">");
         goRight.addActionListener(this::goRightActionPerformed);
-        getContentPane().add(goRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 590, -1, 70));
+        getContentPane().add(goRight, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 300, -1, 70));
 
         slides.setText("jLabel2");
         getContentPane().add(slides, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 86, 730, 480));
+
+        email.setText("example@gmail.com");
+        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 620, 270, 30));
+
+        subscribe.setText("Add Subscription");
+        subscribe.addActionListener(this::subscribeActionPerformed);
+        getContentPane().add(subscribe, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 670, -1, -1));
+
+        cancel.setText("Cancel Subscription");
+        cancel.addActionListener(this::cancelActionPerformed);
+        getContentPane().add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 670, -1, -1));
+
+        verify.setText("Verify Subscription");
+        verify.addActionListener(this::verifyActionPerformed);
+        getContentPane().add(verify, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 670, -1, -1));
+
+        jLabel2.setText("Subscribe to the Newsletter");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 630, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/un14/oop/images/InformationBG.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -114,6 +167,45 @@ public class InformationGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_MainMenuButtonActionPerformed
 
+    private boolean validation(String val){
+        return val != null && val.contains("@") && val.contains(".");
+    }
+    
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        String val = email.getText().trim();
+        
+        if(newsletterSubs.remove(val)){
+            emailWriter();
+            JOptionPane.showMessageDialog(this, "The email " + val + " has been unsubscribed");
+        }else{
+                        JOptionPane.showMessageDialog(this, "The email "+ val +" was not subscribed");
+        }
+    }//GEN-LAST:event_cancelActionPerformed
+
+    private void subscribeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subscribeActionPerformed
+        String val = email.getText().trim();
+        
+        if (!validation(val)){
+            JOptionPane.showMessageDialog(this, "The email you entered is not valid");
+        }else if (newsletterSubs.contains(val)){
+            JOptionPane.showMessageDialog(this, "You already are subscribed with this email.");
+        }else{
+            newsletterSubs.add(val);
+            emailWriter();
+            JOptionPane.showMessageDialog(this, "Thank you for subscribing");
+        }
+    }//GEN-LAST:event_subscribeActionPerformed
+
+    private void verifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyActionPerformed
+        String val = email.getText().trim();
+        
+        if(newsletterSubs.contains(val)){
+            JOptionPane.showMessageDialog(this, val  + " is subscribed.");
+        }else{
+            JOptionPane.showMessageDialog(this, val  + " is not subscribed.");
+        }
+    }//GEN-LAST:event_verifyActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -141,9 +233,14 @@ public class InformationGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton MainMenuButton;
+    private javax.swing.JButton cancel;
+    private javax.swing.JTextField email;
     private javax.swing.JButton goLeft;
     private javax.swing.JButton goRight;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel slides;
+    private javax.swing.JButton subscribe;
+    private javax.swing.JButton verify;
     // End of variables declaration//GEN-END:variables
 }
