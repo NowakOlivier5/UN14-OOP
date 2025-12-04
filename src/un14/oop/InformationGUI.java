@@ -18,9 +18,11 @@ import java.io.IOException;
  * @author Lestat Azariel Alvarez Quintana Ordiz
  */
 public class InformationGUI extends javax.swing.JFrame {
+    //I use this array to save and store the emails that are getting inputted
     private final ArrayList<String> newsletterSubs = new ArrayList<>();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InformationGUI.class.getName());
-    private int image = 0;
+    private int image = 0; //This is the index that I use to display the slides. I did them with canva.
+    //This array has all the slides filepath, and ill use it to select and display. (Goes from 0 to 5)
     private final String[] informationSlides = {
      "/un14/oop/images/information/1.png",
      "/un14/oop/images/information/2.png",
@@ -29,19 +31,20 @@ public class InformationGUI extends javax.swing.JFrame {
      "/un14/oop/images/information/5.png",
      "/un14/oop/images/information/6.png"
     };
+    //This is the file where my email addresses get stored. If the file doesnt exist it will also create one.
     private final String textFile = "newsletterSubscribers.txt";
     //At the start I only printed message but was temporarly, as soon as you changed menu or closed the app the information goes missing. Oli reminded me that we did see how to save them on files, so here im doing the loading the data and the saving the data.
-    private void emailReader(){
+    private void emailReader(){ // The data from the file from previous uses gets loaded here. It also uses catch to avoid crashes in case that the file doesnt exist or was deleted.
         try(BufferedReader reader = new BufferedReader(new FileReader(textFile))){
             String l;
             while ((l = reader.readLine()) !=null){
-                newsletterSubs.add(l.trim());
+                newsletterSubs.add(l.trim()); //Using trim so it removes any spaces that might have been done after writing the email.
             }
         }catch (IOException e){
             System.out.println("There is no subscribers file.");
         }
     }
-    
+    //This is the writer, this stores the new "subscribers" emails in the file.
     private void emailWriter(){
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(textFile))){
             for (String email : newsletterSubs){
@@ -52,7 +55,7 @@ public class InformationGUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
+    //This is how the pictures are showned depending on the number that the index is on, at the start is 0 and thats my "opening slide" that will be displayed all the time. When you use the buttons the index changes and the picture changes with it. It also resizes the picture so its not cut off.
     private void choosingImage(){
        ImageIcon i = new ImageIcon(
        new ImageIcon(getClass().getResource(informationSlides[image])).getImage().getScaledInstance(slides.getWidth(), slides.getHeight(), Image.SCALE_SMOOTH));
@@ -67,8 +70,8 @@ public class InformationGUI extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
-        choosingImage();
-        emailReader();
+        choosingImage(); //This is so the slides start showing from the moment you go in to the menu, to avoid having an empty label. It will start on the opening slide
+        emailReader();//This is so it loads the emails from the file when accessing this menu.
     }
 
     /**
@@ -139,9 +142,9 @@ public class InformationGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//This is my first button, goes to the left by changing the index.
     private void goLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goLeftActionPerformed
-        if (image == 0){
+        if (image == 0){ //Im using a conditional so the program doesnt keep increasing the index and loops around keeping a "smooth" transitions between the slides.
             image = 5;
             choosingImage();
         }else{
@@ -149,7 +152,7 @@ public class InformationGUI extends javax.swing.JFrame {
         }
         choosingImage();
     }//GEN-LAST:event_goLeftActionPerformed
-
+//same as before but to the right.
     private void goRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goRightActionPerformed
         if (image == 5){
             image = 0;
@@ -159,18 +162,18 @@ public class InformationGUI extends javax.swing.JFrame {
         }
         choosingImage();
     }//GEN-LAST:event_goRightActionPerformed
-
+//This was added by oli that was in charge of the main funcionallity of the GUI, He created the files and loaded the bacground labels. In the git you will see that he created the menues and connected them. But the rest of the functionallity of this menu i did it.
     private void MainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainMenuButtonActionPerformed
         // TODO add your handling code here:
         MainMenuGUI myGUI = new MainMenuGUI();
         myGUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_MainMenuButtonActionPerformed
-
+//This is my validator, im making sure that has some of the main components of a mail address, and avoiding empty submitions.
     private boolean validation(String val){
         return val != null && val.contains("@") && val.contains(".");
     }
-    
+//This one checks and displays that your "subscription" was canceled or that it wasnt subscribed. It removes it from the file.    
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         String val = email.getText().trim();
         
@@ -181,7 +184,7 @@ public class InformationGUI extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "The email "+ val +" was not subscribed");
         }
     }//GEN-LAST:event_cancelActionPerformed
-
+//Here I use the validator, if the email is not valid will give an alert. If that email is already in the array of emails will also give an alert. And lastly it will add the item to the array and the file.
     private void subscribeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subscribeActionPerformed
         String val = email.getText().trim();
         
@@ -195,7 +198,7 @@ public class InformationGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Thank you for subscribing");
         }
     }//GEN-LAST:event_subscribeActionPerformed
-
+//This is to search an email and find out if it was subscribed or not. Because this is an app "for the public" having very easily exposed all the emails would be a risk. SO they can search if they already know what they are searching.
     private void verifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyActionPerformed
         String val = email.getText().trim();
         

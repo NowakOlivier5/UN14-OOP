@@ -3,9 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package un14.oop;
-
-
-
+/*To learn how to make my own game I have used different tutorials, I had to learn to make different games like Flappy bird before I could make my game. 
+*https://zetcode.com/javagames/collision/
+*http://edu4java.com/es/game/game0.html (This one is in spanish, but i think you can review it in english somewhere in the website)
+*https://www.instructables.com/Java-Game-Programming-Tutorial-Flappy-Bird-Redux/ 
+*https://www.youtube.com/watch?v=Xw2MEG-FBsE&t=2104s These ones are the resources I used to learn how to do games on java without having to make a game engine from scratch.
+*/
 /**
  *CrabApp.java
  * @author Lestat Alvarez Quintana Ordiz 
@@ -13,7 +16,9 @@ package un14.oop;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 public class CrabApp extends JFrame{ //Here I use extend Jframe to create my window for my game.
+    private final soundPlayer song;
     public CrabApp(){
+        song = new soundPlayer("/un14/oop/sound/CrabSong.wav"); //Olivier told me to put this here so i can also have a song of my choosing.
         crabUI(); //With this I call the method and I start the UI
     }
     private void crabUI(){ //In the first part i create my Jpanel while also setting its size and title.  
