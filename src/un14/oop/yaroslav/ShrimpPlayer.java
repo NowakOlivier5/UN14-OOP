@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Yaroslav
+ * @author Yaroslav Kondaurov
  */
 public class ShrimpPlayer {
     // Variables

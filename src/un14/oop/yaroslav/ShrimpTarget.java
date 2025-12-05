@@ -6,9 +6,7 @@ package un14.oop.yaroslav;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  *
@@ -43,6 +41,7 @@ public class ShrimpTarget {
         }
     }
     
+    // Getter
     public ArrayList<Target> getTargets() {
         return targets;
     }
@@ -53,7 +52,7 @@ public class ShrimpTarget {
         // Variables
         private int targetPosX;
         private int targetPosY;
-        private int speed = 5;
+        private int speed = 2;
         private Image trashIcon;
         
         public Target(int panelWidth) {

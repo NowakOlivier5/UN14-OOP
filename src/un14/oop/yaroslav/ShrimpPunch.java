@@ -6,7 +6,6 @@ package un14.oop.yaroslav;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 /**

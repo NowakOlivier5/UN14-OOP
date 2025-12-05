@@ -6,13 +6,17 @@ package un14.oop.yaroslav;
 
 import javax.swing.JFrame;
 import java.awt.EventQueue;
+import un14.oop.olivier.soundPlayer;
 /**
  *
- * @author Yaroslav
+ * @author Yaroslav Kondaurov
  */
 public class ShrimpApp extends JFrame{
+    private soundPlayer music;
+    
     // Main method calling
     public ShrimpApp() {
+        music = new soundPlayer("/un14/oop/sound/shrimpMusic.wav");
         shrimpUI();
     }
     

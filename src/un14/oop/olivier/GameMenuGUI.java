@@ -5,7 +5,7 @@
 package un14.oop.olivier;
 
 import un14.oop.CrabApp;
-import un14.oop.ShrimpApp;
+import un14.oop.yaroslav.ShrimpApp;
 
 /**
  *
