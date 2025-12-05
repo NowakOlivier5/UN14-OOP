@@ -4,7 +4,7 @@
  */
 package un14.oop.olivier;
 
-import un14.oop.InformationGUI;
+import un14.oop.lestat.InformationGUI;
 import un14.oop.olivier.GameMenuGUI;
 
 /**

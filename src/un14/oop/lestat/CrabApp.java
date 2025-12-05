@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package un14.oop;
+package un14.oop.lestat;
 /*To learn how to make my own game I have used different tutorials, I had to learn to make different games like Flappy bird before I could make my game. 
 *https://zetcode.com/javagames/collision/
 *http://edu4java.com/es/game/game0.html (This one is in spanish, but i think you can review it in english somewhere in the website)
