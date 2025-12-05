@@ -17,16 +17,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import java.awt.Image;
+import java.util.ArrayList;
 /**
  *
  * @author Yaroslav
  */
 public class Shrimp extends JPanel implements ActionListener{
     private Image shrimpBackground;
-    private Image shrimpPunch;
-    private Image shrimpTrash;
     
     private ShrimpPlayer shrimpPlayer;
+    private ShrimpTarget shrimpTarget;
     
     private Timer shrimpLoop;
     private Timer fallingTrashSpawner;
@@ -46,6 +46,10 @@ public class Shrimp extends JPanel implements ActionListener{
         shrimpLoop = new Timer(16, this);
         shrimpLoop.start();
         
+        shrimpTarget = new ShrimpTarget();
+        fallingTrashSpawner = new Timer(2000, e-> {shrimpTarget.spawnTarget(getWidth());});
+        fallingTrashSpawner.start();
+        
         addKeyListener(new TAdapter());
     }
     
@@ -54,29 +58,55 @@ public class Shrimp extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // Insert actions
         shrimpPlayer.updatePlayer();
+        shrimpTarget.updateTarget(getHeight());
         repaint();
     }
     
-    // 
+    // Draws the main interface for what is shown in the game
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(shrimpBackground, 0, 0, getWidth(), getHeight(), this);
+        g.drawImage(shrimpBackground, 0, 0, getWidth(), getHeight(), this); // Loads the background
         
-        drawShrimp(g);
+        // Calls all the draw functions for their respective sprites and their interactions
+        drawShrimp(g); // The player
+        drawProjectiles(g); // The punches the player throws out
+        drawTargets(g); // The trash targets
         
         Toolkit.getDefaultToolkit().sync();
     }
     
+    // Draws the shrimp player
     private void drawShrimp(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(shrimpPlayer.getImage(), shrimpPlayer.getPosX(), shrimpPlayer.getPosY(), 200, 100, this);
+    }
+    
+    // Gets the arraylist of projectiles and iterates through the array and for each one,
+    // draws its image. Each projectile has its own set of coords to be displayed in the correct position
+    private void drawProjectiles(Graphics g) {
+        for (ShrimpPunch.Projectile shrimpP : shrimpPlayer.getProjectiles()) {
+            g.drawImage(shrimpP.getPImage(), shrimpP.getPosX(), shrimpP.getPosY(), 50, 50, this);
+        }
+    }
+    
+    // Similar to the drawProjectiles function with just a different arrayList, this
+    // one being about trash instead
+    private void drawTargets(Graphics g) {
+        for (ShrimpTarget.Target trash : shrimpTarget.getTargets()) {
+            g.drawImage(trash.getImage(), trash.getX(), trash.getY(), 150, 150, this);
+        }
     }
     
     private class TAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
             shrimpPlayer.movePlayer(e);
+            
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_SPACE) {
+                shrimpPlayer.shoot();
+            }
         }
         @Override
         public void keyReleased(KeyEvent e) {

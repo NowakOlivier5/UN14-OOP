@@ -7,6 +7,8 @@ package un14.oop;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
 /**
  *
  * @author yaros
@@ -17,12 +19,14 @@ public class ShrimpPlayer {
     private final int playerPosY;
     private int playerMove;
     private Image shrimpPlayer;
+    private ShrimpPunch punch;
     
     // Constructor
     public ShrimpPlayer() {
         playerPosX = 500;
         playerPosY = 500;
         playerMove = 0;
+        punch = new ShrimpPunch();
         loadSprite();
     }
     
@@ -32,10 +36,13 @@ public class ShrimpPlayer {
         shrimpPlayer = sp.getImage();
     }
     
+    // Updates the player position and updates the projectiles
     public void updatePlayer() {
         playerPosX += playerMove;
+        punch.updateProjectile();
     }
     
+    // Determines which direction the player moves by changing the playerMove variable by a set amount
     public void movePlayer(KeyEvent direction) {
         int moveKey = direction.getKeyCode();
         if (moveKey == KeyEvent.VK_LEFT) {
@@ -45,11 +52,17 @@ public class ShrimpPlayer {
         }
     }
     
+    // Makes the playerMove value 0 if no key is pressed
     public void stopPlayer(KeyEvent direction) {
         int stopKey = direction.getKeyCode();
         if (stopKey == KeyEvent.VK_LEFT || stopKey == KeyEvent.VK_RIGHT) {
             playerMove = 0;
         }
+    }
+    
+    // Calls the shoot function in ShrimpPunch to create a new projectile
+    public void shoot() {
+        punch.shoot(playerPosX + 50, playerPosY);
     }
     
     // Getters
@@ -61,5 +74,8 @@ public class ShrimpPlayer {
     }
     public Image getImage() {
         return shrimpPlayer;
+    }
+    public ArrayList<ShrimpPunch.Projectile> getProjectiles() {
+        return punch.getProjectiles();
     }
 }
