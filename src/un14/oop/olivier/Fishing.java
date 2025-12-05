@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package un14.oop;
+package un14.oop.olivier;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -78,12 +78,10 @@ public class Fishing extends JPanel implements ActionListener{
         g.drawImage(fishingBoat, 620, 80, this);
         fishingTrash.drawTrash(g, this);
         fishingFish.drawFish(g, this);
-
-        Toolkit.getDefaultToolkit().sync();
-        
         g.drawString("Name " + name, 20, 40);
         g.drawString("Score " + fishingHook.getScore(), 20, 60); //will both be removed once leaderboard is added
-        
+        g.drawString("PRESS SPACE TO RELEASE HOOK", 580, 80);
+        Toolkit.getDefaultToolkit().sync();
     }
     private void drawHook(Graphics g){
         Graphics2D g2d = (Graphics2D) g;

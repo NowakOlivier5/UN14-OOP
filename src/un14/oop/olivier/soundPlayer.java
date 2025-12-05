@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package un14.oop;
+package un14.oop.olivier;
 
 import java.io.File;
 import javax.sound.sampled.*;
@@ -33,7 +33,7 @@ public class soundPlayer {
     }
     public void setVolume(float volume){ 
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);//this line is from https://stackoverflow.com/questions/953598/audio-volume-control-increase-or-decrease-in-java
-        System.out.println(volume);
+        System.out.println(volume);//slider debugging
         if(volume == 0f){//the only solutions i found online involved formulas converting the volume percentage to decibels, which i didnt understand so i hardcoded decibel values instead
             gainControl.setValue(-80f);
         }else if(volume == 1f){

@@ -1,4 +1,4 @@
-package un14.oop;
+package un14.oop.olivier;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -63,7 +63,6 @@ public class SettingsGUI extends javax.swing.JFrame {
 
         music.setMaximum(3);
         music.setToolTipText("");
-        music.setValue(3);
 
         jSlider2.setMaximum(3);
 

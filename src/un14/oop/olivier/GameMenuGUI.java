@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package un14.oop;
+package un14.oop.olivier;
+
+import un14.oop.CrabApp;
+import un14.oop.ShrimpApp;
 
 /**
  *
@@ -31,58 +34,64 @@ public class GameMenuGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        MainMenuButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         crabGame = new javax.swing.JRadioButton();
         shrimpGame = new javax.swing.JRadioButton();
         fishingGame = new javax.swing.JRadioButton();
-        MainMenuButton = new javax.swing.JButton();
-        PlayButton = new javax.swing.JButton();
-        nameInput = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        nameInput = new javax.swing.JTextField();
+        PlayButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        buttonGroup1.add(crabGame);
-        crabGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        crabGame.setText("Crab Game");
-        crabGame.setToolTipText("");
-        getContentPane().add(crabGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 300, 170, 40));
-
-        buttonGroup1.add(shrimpGame);
-        shrimpGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        shrimpGame.setText("Shrimp Game");
-        getContentPane().add(shrimpGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 360, -1, -1));
-
-        buttonGroup1.add(fishingGame);
-        fishingGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        fishingGame.setText("Fishing Game");
-        getContentPane().add(fishingGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 410, -1, -1));
 
         MainMenuButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         MainMenuButton.setText("Main Menu");
         MainMenuButton.addActionListener(this::MainMenuButtonActionPerformed);
         getContentPane().add(MainMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 50));
 
-        PlayButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        PlayButton.setText("Play");
-        PlayButton.addActionListener(this::PlayButtonActionPerformed);
-        getContentPane().add(PlayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 540, 150, 60));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        nameInput.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        getContentPane().add(nameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 150, 50));
+        buttonGroup1.add(crabGame);
+        crabGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        crabGame.setText("Crab Game");
+        crabGame.setToolTipText("");
+        jPanel1.add(crabGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 180, 40));
+
+        buttonGroup1.add(shrimpGame);
+        shrimpGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        shrimpGame.setText("Shrimp Game");
+        jPanel1.add(shrimpGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 180, -1));
+
+        buttonGroup1.add(fishingGame);
+        fishingGame.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        fishingGame.setText("Fishing Game");
+        fishingGame.addActionListener(this::fishingGameActionPerformed);
+        jPanel1.add(fishingGame, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 180, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Select Desired Game");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 230, 230, 70));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 230, 70));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Insert Player Name");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 210, 70));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 210, 70));
+
+        nameInput.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel1.add(nameInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 210, 50));
+
+        PlayButton.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        PlayButton.setText("Play");
+        PlayButton.addActionListener(this::PlayButtonActionPerformed);
+        jPanel1.add(PlayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 160, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 340, 570));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/un14/oop/images/GameMenuBG.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -117,6 +126,10 @@ public class GameMenuGUI extends javax.swing.JFrame {
            this.dispose();
         }
     }//GEN-LAST:event_PlayButtonActionPerformed
+
+    private void fishingGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fishingGameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fishingGameActionPerformed
     
     /**
      * @param args the command line arguments
@@ -152,6 +165,7 @@ public class GameMenuGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nameInput;
     private javax.swing.JRadioButton shrimpGame;
     // End of variables declaration//GEN-END:variables

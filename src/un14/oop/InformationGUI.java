@@ -4,6 +4,7 @@
  */
 package un14.oop;
 
+import un14.oop.olivier.MainMenuGUI;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
