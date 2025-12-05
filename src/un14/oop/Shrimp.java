@@ -18,9 +18,10 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.util.ArrayList;
+
 /**
  *
- * @author Yaroslav
+ * @author Yaroslav Kondaurov
  */
 public class Shrimp extends JPanel implements ActionListener{
     private Image shrimpBackground;

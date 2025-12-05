@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  *
- * @author yaros
+ * @author Yaroslav Kondaurov
  */
 // Fix this code up
 
