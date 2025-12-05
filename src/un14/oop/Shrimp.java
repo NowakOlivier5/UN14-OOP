@@ -18,6 +18,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.awt.Rectangle;
 
 /**
  *
@@ -31,6 +32,8 @@ public class Shrimp extends JPanel implements ActionListener{
     
     private Timer shrimpLoop;
     private Timer fallingTrashSpawner;
+    
+    private int shrimpPoints;
     
     // Start
     public Shrimp() {
@@ -60,6 +63,7 @@ public class Shrimp extends JPanel implements ActionListener{
         // Insert actions
         shrimpPlayer.updatePlayer();
         shrimpTarget.updateTarget(getHeight());
+        collisionChecker();
         repaint();
     }
     
@@ -73,6 +77,7 @@ public class Shrimp extends JPanel implements ActionListener{
         drawShrimp(g); // The player
         drawProjectiles(g); // The punches the player throws out
         drawTargets(g); // The trash targets
+        showScore(g);
         
         Toolkit.getDefaultToolkit().sync();
     }
@@ -96,6 +101,33 @@ public class Shrimp extends JPanel implements ActionListener{
     private void drawTargets(Graphics g) {
         for (ShrimpTarget.Target trash : shrimpTarget.getTargets()) {
             g.drawImage(trash.getImage(), trash.getX(), trash.getY(), 150, 150, this);
+        }
+    }
+    
+    private void showScore(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.drawString("Points: " + shrimpPoints, 50, 50);
+    }
+    
+    // This function checks the collision
+    private void collisionChecker() {
+        ArrayList<ShrimpPunch.Projectile> projectiles = shrimpPlayer.getProjectiles();
+        ArrayList<ShrimpTarget.Target> targets = shrimpTarget.getTargets();
+        for (int i = 0; i < projectiles.size(); i++) {
+            ShrimpPunch.Projectile sp = projectiles.get(i);
+            Rectangle punchHitbox = new Rectangle(sp.getPosX(), sp.getPosY(), 50, 50);
+            for (int j = 0; j < targets.size(); j++) {
+                ShrimpTarget.Target st = targets.get(j);
+                Rectangle targetHitbox = new Rectangle(st.getX(), st.getY(), 150, 150);
+                if (punchHitbox.intersects(targetHitbox)) {
+                    projectiles.remove(i);
+                    targets.remove(j);
+                    shrimpPoints += 1;
+                    i--;
+                    break;
+                }
+            }
         }
     }
     
